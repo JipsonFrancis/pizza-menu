@@ -1,40 +1,46 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React from "react"
+import ReactDOM from "react-dom/client"
+import './index.css'
 
 function App ()
 {
-    return (<>
+    return (<div className='container'>
         <Header />
-        <Menu/>
-        <Footer/>
+        <Menu />
+        <Footer />
 
-    </>)
+    </div>)
 }
 
-function Pizza()
+const Header = () => (<h1 className="header">Kasi Eats</h1>)
+
+const Menu = () => (<div className="menu">
+<h2>Our Menu</h2>
+<div className="pizzas">
+    <Pizza />
+    <Pizza />
+    <Pizza />
+</div>
+<Btn />
+</div>)
+
+const Footer = () => ( <footer className="footer">{new Date().toLocaleTimeString()} We're open now</footer> )
+
+const Pizza = () => 
 {
     return (
-        <div>
+        <div className="pizza ">
             <img src="pizzas/salamino.jpg" alt="Sallamino Pizza"/>
             <h3>Pizza Salamino</h3>
             <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-            <strong>$18</strong>
+            <span>$18</span>
         </div>
     )
 }
-
-const Header = () => (<h1>Kasi Eats</h1>)
-
-const Menu = () => (<>
-<h3>Our Menu</h3>
-<Pizza />
-<Pizza />
-<Pizza />
-</>)
-
-const Footer = () => ( <footer>{new Date().toLocaleTimeString()} We're open now</footer> )
+const Btn = () => (<button className="btn order" type="submit">Order</ button>)
 
 
+// rendering components on the browser canvas 
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 
