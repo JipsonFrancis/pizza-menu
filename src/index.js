@@ -4,10 +4,10 @@ import ReactDOM from "react-dom/client";
 function App ()
 {
     return (<>
-        <h1>Hello React !</h1>
-        <Pizza />
-        <Pizza />
-        <Pizza />
+        <Header />
+        <Menu/>
+        <Footer/>
+
     </>)
 }
 
@@ -22,6 +22,18 @@ function Pizza()
         </div>
     )
 }
+
+const Header = () => (<h1>Kasi Eats</h1>)
+
+const Menu = () => (<>
+<h3>Our Menu</h3>
+<Pizza />
+<Pizza />
+<Pizza />
+</>)
+
+const Footer = () => ( <footer>{new Date().toLocaleTimeString()} We're open now</footer> )
+
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
