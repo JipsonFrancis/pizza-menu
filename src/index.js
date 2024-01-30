@@ -11,7 +11,7 @@ function App ()
     <div className='container'>
         <Header />
         <Menu />
-        <Footer time={time}/>
+        <Footer time={time} />
     </div>)
 }
 
