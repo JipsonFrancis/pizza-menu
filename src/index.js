@@ -2,16 +2,29 @@ import React, { useEffect, useState } from "react"
 import ReactDOM from "react-dom/client"
 import './index.css'
 import pizzaData from "./data"
+import axios from "axios"
+
+
+//kingKLong:fz8T6ZQHNSs2pUXF
 
 function App ()
 {
     const [time, setTime] = useState(new Date().toLocaleTimeString())
+    const [datum, setDatum] = useState([])
 
     React.useEffect(() => {
         setInterval( () => {
             setTime(new Date().toLocaleTimeString())
         }, 1000)
     }, [])
+
+    React.useEffect(() => {
+        axios.get("/api/items")
+          .then(response => setDatum(response.data))
+          .catch(error => console.error(error));
+    }, []);
+
+    console.log(datum)
 
     return (
     <div className='container'>
@@ -48,6 +61,7 @@ const Footer = (props) =>
 
     return <footer className="footer">{isOpen && `${props.time} We're open now`}</footer>
 }
+
 const Pizza = (props) => 
 {
     return (
@@ -61,6 +75,7 @@ const Pizza = (props) =>
         </li>
     )
 }
+
 const Btn = () => (<button className="btn order" type="submit">Order</ button>)
 
 
