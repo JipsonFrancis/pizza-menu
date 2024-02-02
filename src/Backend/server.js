@@ -1,27 +1,31 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import item from './Model/Item'
+//mongodb+srv://kingKLong:yTT5WGRSEDlLEjSb@cluster101.ia1ny2m.mongodb.net/?retryWrites=true&w=majority
+import {MongoClient} from "mongodb"
 
-const PORT = process.env.PORT || 5000
+async function main ()
+{
+    const uri = `mongodb+srv://kingKLong:yTT5WGRSEDlLEjSb@cluster101.ia1ny2m.mongodb.net/?retryWrites=true&w=majority`
 
-express().listen(PORT, () => console.log(`Server running on port ${PORT}`) )
+    const session = new MongoClient(uri)
 
-mongoose.connect("mongodb://localhost:27017/", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-
-
-express().get("/api/items", async (request, response) => {
     try
     {
-        const items = await item.find()
-        response.json(items)
-    }
-    catch(error)
+        await session.connect()
+        await listCollections(session)
+    }catch(e)
     {
-        console.error(error)
-        response.status(500).send("Server Error")
+        console.error(e)
+    }finally
+    {
+        await session.close()
     }
-})
+}
 
+
+async function listCollections(session)
+{
+    const {databases} = await session.db().admin().listDatabases()
+    console.log(databases)
+    databases.forEach((db) => console.log(db.name))
+}
+
+main().catch(console.error)

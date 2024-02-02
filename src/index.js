@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react"
 import ReactDOM from "react-dom/client"
 import './index.css'
-import pizzaData from "./data"
+import pizzaData from "./data.js"
 import axios from "axios"
-
-
-//kingKLong:fz8T6ZQHNSs2pUXF
 
 function App ()
 {
