@@ -1,8 +1,8 @@
-import mongoose from 'mongoose'
+import {MongoClient} from "mongodb"
 
-const itemSchema = new mongoose.Schema({
+const itemSchema = new MongoClient.Schema({
     name: String,
     description: String
 })
 
-export default mongoose.model("Item", itemSchema)
+export default MongoClient.model("Item", itemSchema)

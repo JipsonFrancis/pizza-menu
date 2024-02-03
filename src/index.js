@@ -16,12 +16,10 @@ function App ()
     }, [])
 
     React.useEffect(() => {
-        axios.get("/api/items")
-          .then(response => setDatum(response.data))
-          .catch(error => console.error(error));
+        axios.get("http://localhost:5000/api/item")
+          .then(response => {setDatum(response.data) })
+          .catch(error => console.error(error))
     }, []);
-
-    console.log(datum)
 
     return (
     <div className='container'>
@@ -56,7 +54,7 @@ const Footer = (props) =>
     const closeHour = 20
     const isOpen = hour >= openHour && hour < closeHour
 
-    return <footer className="footer">{isOpen && `${props.time} We're open now`}</footer>
+    return <footer className="footer">{isOpen && `${props.time} We're open now.`}</footer>
 }
 
 const Pizza = (props) => 
